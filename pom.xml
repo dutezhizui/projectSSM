@@ -11,6 +11,8 @@
     <modules>
         <module>web-app</module>
         <module>web-service</module>
+        <module>web-utils</module>
+        <module>web-domain</module>
     </modules>
     <build>
         <finalName>quick4j</finalName>
