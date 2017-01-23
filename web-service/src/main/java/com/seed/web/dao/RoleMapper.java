@@ -41,6 +41,7 @@ public interface RoleMapper extends GenericDao<Role, Long> {
      *
      * @param userId
      * @return
+     *
      */
     List<Role> selectRolesByUserId(Long userId);
 }

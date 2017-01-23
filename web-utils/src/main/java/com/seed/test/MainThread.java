@@ -1,5 +1,9 @@
 package com.seed.test;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Created by Administrator on 2016/12/11.
  */
@@ -18,7 +22,9 @@ public class MainThread {
             thread1.start();
             System.err.println("Waiting for LiftOff");
         }*/
-        Thread thread=new Thread(new TestThread());
-        thread.start();
+        //Thread thread=new Thread(new TestThread());
+        //thread.start();
+        ExecutorService executorService= Executors.newCachedThreadPool();
+        executorService.execute(new LiftOff());
     }
 }
