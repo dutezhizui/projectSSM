@@ -87,6 +87,7 @@
         <!-- lib versions -->
         <junit.version>4.11</junit.version>
         <spring.version>4.3.4.RELEASE</spring.version>
+        <spring.security.version>4.2.1.RELEASE</spring.security.version>
         <mybatis.version>3.2.2</mybatis.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
         <mysql.connector.version>5.1.30</mysql.connector.version>
@@ -164,6 +165,34 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+        <!-- spring security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+
         <!-- springframe end -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -354,6 +383,11 @@
             <artifactId>jedis</artifactId>
             <version>2.9.0</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.1.40</version>
+        </dependency>
     </dependencies>
 </project>
