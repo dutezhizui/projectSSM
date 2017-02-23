@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd 
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+    <!--<mvc:annotation-driven/>-->
     <!-- 扫描controller（controller层注入） -->
     <context:component-scan base-package="com.seed.web.controller"/>
 
@@ -31,8 +31,8 @@
         <property name="basenames">
             <list>
                 <!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找 -->
-                <value>classpath:messages</value>
-                <value>classpath:org/hibernate/validator/ValidationMessages</value>
+                <!--<value>classpath:messages</value>
+                <value>classpath:org/hibernate/validator/ValidationMessages</value>-->
             </list>
         </property>
         <property name="useCodeAsDefaultMessage" value="false"/>
@@ -66,10 +66,9 @@
         </property>
     </bean>
     <!-- 支持返回json -->
-
     <!-- 对模型视图添加前后缀 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/WEB-INF/views/" p:suffix=".html"/>
+          p:prefix="/WEB-INF/views/" p:suffix=".jsp"/>
 
     <!-- 配置springMVC处理上传文件的信息 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -79,9 +78,9 @@
     </bean>
 
     <!-- 启用shrio授权注解拦截方式 -->
-    <aop:config proxy-target-class="true"></aop:config>
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+    <!--<aop:config proxy-target-class="true"></aop:config>-->
+    <!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
-    </bean>
+    </bean>-->
 
 </beans>

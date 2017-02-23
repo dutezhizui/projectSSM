@@ -9,7 +9,6 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
       classpath*:applicationContext.xml
-      classpath*:applicationContext-shiro.xml
       classpath*:securityConfig.xml
     </param-value>
   </context-param>
@@ -89,23 +88,26 @@
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
     <!-- 拦截所有/rest/* 的请求,交给DispatcherServlet处理,性能最好 -->
-    <url-pattern>/rest/*</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
-
+  <!--<servlet-mapping>
+    <servlet-name>jsp</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>-->
   <!-- 首页 -->
   <welcome-file-list>
-    <welcome-file>rest/index</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- 错误页 -->
-  <error-page>
+  <!--<error-page>
     <error-code>404</error-code>
-    <location>/rest/page/404</location>
+    <location>/page/404</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/rest/page/500</location>
-  </error-page>
+    <location>/page/500</location>
+  </error-page>-->
   <!--<error-page>
     <exception-type>org.apache.shiro.authz.AuthorizationException</exception-type>
     <location>/rest/page/401</location>
