@@ -5,6 +5,8 @@ import com.seed.core.generic.GenericDao;
 import com.seed.web.model.User;
 import com.seed.web.model.UserExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ import java.util.List;
  * @author StarZou
  * @since 2014年7月5日 上午11:49:57
  **/
+@Component
 public interface UserMapper extends GenericDao<User, Long> {
     int countByExample(UserExample example);
 

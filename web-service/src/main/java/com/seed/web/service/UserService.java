@@ -2,6 +2,7 @@ package com.seed.web.service;
 
 import com.seed.core.generic.GenericService;
 import com.seed.web.model.User;
+import org.springframework.stereotype.Repository;
 
 /**
  * 用户 业务 接口
@@ -9,6 +10,7 @@ import com.seed.web.model.User;
  * @author StarZou
  * @since 2014年7月5日 上午11:53:33
  **/
+
 public interface UserService extends GenericService<User, Long> {
 
     /**

@@ -6,6 +6,7 @@ import com.seed.web.dao.UserMapper;
 import com.seed.web.model.User;
 import com.seed.web.model.UserExample;
 import com.seed.web.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
 
     @Override

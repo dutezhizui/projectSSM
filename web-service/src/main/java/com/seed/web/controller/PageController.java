@@ -18,7 +18,7 @@ public class PageController {
      */
     @RequestMapping("/login")
     public String login() {
-        return "other";
+        return "index";
     }
 
     /**

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.seed.web.dao.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
@@ -14,16 +16,21 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import com.seed.utils.url.AntUrlPathMatcher;
 import com.seed.utils.url.UrlMatcher;
 
+import javax.annotation.PostConstruct;
+
 public class MyInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     private UrlMatcher urlMatcher = new AntUrlPathMatcher();
     private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
-
+@Autowired
+private UserMapper userMapper;
     //tomcat启动时实例化一次
-    public MyInvocationSecurityMetadataSource() {
+    /*public MyInvocationSecurityMetadataSource() {
         loadResourceDefine();
-    }
+    }*/
     //tomcat开启时加载一次，加载所有url和权限（或角色）的对应关系
+    @PostConstruct
     private void loadResourceDefine() {
+        userMapper.selectByPrimaryKey(1L);
         resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
         Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
         ConfigAttribute ca = new SecurityConfig("ROLE_USER");

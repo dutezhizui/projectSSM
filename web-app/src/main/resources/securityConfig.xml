@@ -8,12 +8,12 @@
     <!--登录页面不过滤 -->
     <http pattern="/login.jsp" security="none" />
 
-    <http access-denied-page="/accessDenied.jsp">
+    <http >
         <form-login login-page="/login.jsp" />
         <!--访问/admin.jsp资源的用户必须具有ROLE_ADMIN的权限 -->
-        <!--<intercept-url pattern="/views/index.html" access="ROLE_ADMIN" />-->
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
         <!--访问/**资源的用户必须具有ROLE_USER的权限 -->
-        <!--<intercept-url pattern="/**" access="ROLE_USER" />-->
+        <intercept-url pattern="/**" access="ROLE_USER" />
         <session-management>
             <concurrency-control max-sessions="1"
                                  error-if-maximum-exceeded="false" />
