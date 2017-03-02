@@ -200,4 +200,11 @@
         SELECT r.* FROM role r LEFT JOIN user_role ur ON r.id = ur.role_id
         WHERE ur.user_id = #{id,jdbcType=BIGINT}
     </select>
+
+    <select id="selectAllRoles" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        FROM
+        role
+    </select>
 </mapper>

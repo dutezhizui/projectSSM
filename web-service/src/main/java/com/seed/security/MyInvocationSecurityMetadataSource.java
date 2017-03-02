@@ -1,12 +1,12 @@
 package com.seed.security;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
+import com.seed.web.dao.PermissionMapper;
+import com.seed.web.dao.RoleMapper;
 import com.seed.web.dao.UserMapper;
+import com.seed.web.model.Permission;
+import com.seed.web.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -23,6 +23,10 @@ public class MyInvocationSecurityMetadataSource implements FilterInvocationSecur
     private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
 @Autowired
 private UserMapper userMapper;
+    @Autowired
+    private RoleMapper roleMapper;
+    @Autowired
+    private PermissionMapper permissionMapper;
     //tomcat启动时实例化一次
     /*public MyInvocationSecurityMetadataSource() {
         loadResourceDefine();
@@ -30,16 +34,20 @@ private UserMapper userMapper;
     //tomcat开启时加载一次，加载所有url和权限（或角色）的对应关系
     @PostConstruct
     private void loadResourceDefine() {
-        userMapper.selectByPrimaryKey(1L);
+        List<Role> roles=roleMapper.selectAllRoles();
+
         resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
-        Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-        ConfigAttribute ca = new SecurityConfig("ROLE_USER");
-        atts.add(ca);
-        resourceMap.put("/index.jsp", atts);
-        Collection<ConfigAttribute> attsno =new ArrayList<ConfigAttribute>();
-        ConfigAttribute cano = new SecurityConfig("ROLE_NO");
-        attsno.add(cano);
-        resourceMap.put("/other.jsp", attsno);
+        for (int i=0;i<roles.size();i++){
+            Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
+            ConfigAttribute ca = new SecurityConfig(roles.get(i).getRoleName());
+            atts.add(ca);
+            List<Permission> permissions=permissionMapper.selectPermissionsByRoleId(roles.get(i).getId());
+            for (int j=0;j<permissions.size();j++){
+                resourceMap.put(permissions.get(j).getPermissionSign(),atts);
+            }
+
+        }
+
     }
 
     //参数是要访问的url，返回这个url对于的所有权限（或角色）

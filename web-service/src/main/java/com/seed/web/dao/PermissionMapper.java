@@ -4,6 +4,7 @@ import com.seed.core.generic.GenericDao;
 import com.seed.web.model.Permission;
 import com.seed.web.model.PermissionExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author StarZou
  * @since 2014??7??5?? ????11:59:03
  **/
+@Repository
 public interface PermissionMapper extends GenericDao<Permission, Long> {
     int countByExample(PermissionExample example);
 

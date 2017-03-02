@@ -1,9 +1,11 @@
 package com.seed.web.dao;
 
 import com.seed.core.generic.GenericDao;
+import com.seed.test.LiftOff;
 import com.seed.web.model.Role;
 import com.seed.web.model.RoleExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  * @author StarZou
  * @since 2014年7月5日 上午11:55:59
  **/
+@Repository
 public interface RoleMapper extends GenericDao<Role, Long> {
     int countByExample(RoleExample example);
 
@@ -44,4 +47,6 @@ public interface RoleMapper extends GenericDao<Role, Long> {
      *
      */
     List<Role> selectRolesByUserId(Long userId);
+
+    List<Role> selectAllRoles();
 }
