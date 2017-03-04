@@ -19,6 +19,7 @@ public class User {
 
     private Date createTime;
 
+    private String userRole;
     public User() {
 
     }
@@ -26,6 +27,14 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public Long getId() {

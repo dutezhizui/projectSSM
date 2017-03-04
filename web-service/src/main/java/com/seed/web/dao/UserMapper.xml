@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.seed.web.model.User">
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="userRole" property="userRole" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="CHAR" />
         <result column="state" property="state" jdbcType="VARCHAR" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -232,5 +233,19 @@
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
+    </select>
+    
+    <select id="selectRoleByUserName" resultMap="BaseResultMap">
+        select t.username,t.password,t.state,t2.role_name as userRole
+        FROM user t INNER JOIN user_role t1 on t.id=t1.user_id
+        INNER JOIN role t2 on t1.role_id=t2.id
+
+    </select>
+
+    <select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where username = #{userName,jdbcType=VARCHAR}
     </select>
 </mapper>

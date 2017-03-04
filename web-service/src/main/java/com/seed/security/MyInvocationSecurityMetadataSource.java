@@ -21,13 +21,12 @@ import javax.annotation.PostConstruct;
 public class MyInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     private UrlMatcher urlMatcher = new AntUrlPathMatcher();
     private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
-@Autowired
-private UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
     @Autowired
     private RoleMapper roleMapper;
     @Autowired
     private PermissionMapper permissionMapper;
-    //tomcat启动时实例化一次
     /*public MyInvocationSecurityMetadataSource() {
         loadResourceDefine();
     }*/

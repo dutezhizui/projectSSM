@@ -7,19 +7,24 @@
 
     <!--登录页面不过滤 -->
     <http pattern="/login.jsp" security="none" />
-
+    <http pattern="/favicon.ico" security="none"/>
     <http >
-        <form-login login-page="/login.jsp" />
+        <form-login login-page="/login.jsp" login-processing-url="/page/login"
+                    username-parameter="j_username" password-parameter="j_password"
+                    authentication-success-handler-ref="authSuccess"
+        />
         <!--访问/admin.jsp资源的用户必须具有ROLE_ADMIN的权限 -->
-        <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/page/**" access="hasRole('ROLE_USER')" />
         <!--访问/**资源的用户必须具有ROLE_USER的权限 -->
-        <intercept-url pattern="/**" access="ROLE_USER" />
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
         <session-management>
             <concurrency-control max-sessions="1"
                                  error-if-maximum-exceeded="false" />
         </session-management>
         <!--增加一个filter，这点与 Acegi是不一样的，不能修改默认的filter了， 这个filter位于FILTER_SECURITY_INTERCEPTOR之前 -->
         <custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+        <csrf disabled="true"></csrf>
     </http>
     <!--一个自定义的filter，必须包含 authenticationManager,accessDecisionManager,securityMetadataSource三个属性，
         我们的所有控制将在这三个类中实现，解释详见具体配置 -->
@@ -33,6 +38,7 @@
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="myUserDetailService">
             <!--如果用户的密码采用加密的话 <password-encoder hash="md5" /> -->
+            <!--<password-encoder hash="md5" />-->
         </authentication-provider>
     </authentication-manager>
 
@@ -46,5 +52,6 @@
     <!--资源源数据定义，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问 -->
     <b:bean id="securityMetadataSource"
             class="com.seed.security.MyInvocationSecurityMetadataSource" />
+    <b:bean id="authSuccess" class="com.seed.security.MyAuthenticationSuccessHandler"/>
 
 </b:beans>

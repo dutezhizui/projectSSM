@@ -1,5 +1,4 @@
 <%@page language="java" import="java.util.*" pageEncoding="UTF-8"%> 
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
 <!DOCTYPEHTMLPUBLIC"-//W3C//DTD HTML 4.01 Transitional//EN">
  
 <html>
@@ -11,7 +10,6 @@
  
 <body>
   <h3>这是首页</h3>欢迎
-<sec:authentication property ="name"/> !
 
 <br> 
 <a href="admin.jsp">进入admin页面</a> 

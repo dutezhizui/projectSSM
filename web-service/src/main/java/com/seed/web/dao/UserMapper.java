@@ -56,4 +56,7 @@ public interface UserMapper extends GenericDao<User, Long> {
      * @return
      */
     List<User> selectByExampleAndPage(Page<User> page, UserExample example);
+
+    List<User> selectRoleByUserName();
+    User selectUserByName(@Param("userName") String userName);
 }

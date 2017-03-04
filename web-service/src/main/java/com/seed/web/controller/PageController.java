@@ -2,6 +2,7 @@ package com.seed.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 视图控制器,返回jsp视图给前端
@@ -18,6 +19,8 @@ public class PageController {
      */
     @RequestMapping("/login")
     public String login() {
+
+        System.out.println("userName=");
         return "index";
     }
 
