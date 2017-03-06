@@ -12,6 +12,7 @@
         <form-login login-page="/login.jsp" login-processing-url="/page/login"
                     username-parameter="j_username" password-parameter="j_password"
                     authentication-success-handler-ref="authSuccess"
+                    authentication-failure-handler-ref="authFail"
         />
         <!--访问/admin.jsp资源的用户必须具有ROLE_ADMIN的权限 -->
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
@@ -53,5 +54,5 @@
     <b:bean id="securityMetadataSource"
             class="com.seed.security.MyInvocationSecurityMetadataSource" />
     <b:bean id="authSuccess" class="com.seed.security.MyAuthenticationSuccessHandler"/>
-
+    <b:bean id="authFail" class="com.seed.security.MyAuthenticationFailHandler"/>
 </b:beans>
