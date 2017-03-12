@@ -25,14 +25,6 @@ public class PageController {
     }
 
     /**
-     * dashboard页
-     */
-    @RequestMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard";
-    }
-
-    /**
      * 404页
      */
     @RequestMapping("/404")
