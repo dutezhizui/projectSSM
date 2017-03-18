@@ -10,6 +10,7 @@
     <http pattern="/favicon.ico" security="none"/>
     <http pattern="/js/**" security="none"/>
     <http pattern="/css/**" security="none"/>
+    <http pattern="/error/**" security="none"/>
 
     <http >
         <form-login login-page="/login.html" login-processing-url="/page/login"

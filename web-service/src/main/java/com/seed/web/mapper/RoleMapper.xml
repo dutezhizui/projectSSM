@@ -36,35 +36,7 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Update_By_Example_Where_Clause">
-        <where>
-            <foreach collection="example.oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" suffix=")" prefixOverrides="and">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
-            </foreach>
-        </where>
-    </sql>
+
     <sql id="Base_Column_List">
         id, role_name, role_sign, description
     </sql>
@@ -118,37 +90,7 @@
         </trim>
     </insert>
 
-    <update id="updateByExampleSelective" parameterType="map">
-        update role
-        <set>
-            <if test="record.id != null">
-                id = #{record.id,jdbcType=BIGINT},
-            </if>
-            <if test="record.roleName != null">
-                role_name = #{record.roleName,jdbcType=VARCHAR},
-            </if>
-            <if test="record.roleSign != null">
-                role_sign = #{record.roleSign,jdbcType=VARCHAR},
-            </if>
-            <if test="record.description != null">
-                description = #{record.description,jdbcType=VARCHAR},
-            </if>
-        </set>
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause" />
-        </if>
-    </update>
-    <update id="updateByExample" parameterType="map">
-        update role
-        set id = #{record.id,jdbcType=BIGINT},
-        role_name = #{record.roleName,jdbcType=VARCHAR},
-        role_sign = #{record.roleSign,jdbcType=VARCHAR},
-        description =
-        #{record.description,jdbcType=VARCHAR}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause" />
-        </if>
-    </update>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.seed.web.model.Role">
         update role
         <set>
