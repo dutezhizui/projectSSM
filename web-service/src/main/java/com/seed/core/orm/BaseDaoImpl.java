@@ -13,6 +13,7 @@ public class BaseDaoImpl extends SqlSessionDaoSupport implements BaseDao {
     @Override
     public void addObject(String statementName, Object obj) throws DataAccessException {
         getSqlSession().insert(statementName,obj);
+
     }
 
     @Override

@@ -4,12 +4,10 @@ import com.seed.core.generic.GenericDao;
 import com.seed.core.generic.GenericServiceImpl;
 import com.seed.web.dao.UserMapper;
 import com.seed.web.model.User;
-import com.seed.web.model.UserExample;
 import com.seed.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -54,12 +52,6 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         return userMapper;
     }
 
-    @Override
-    public User selectByUsername(String username) {
-        UserExample example = new UserExample();
-        example.createCriteria().andUsernameEqualTo(username);
-        final List<User> list = userMapper.selectByExample(example);
-        return list.get(0);
-    }
+
 
 }

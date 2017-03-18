@@ -1,10 +1,7 @@
 package com.seed.web.dao;
 
 import com.seed.core.generic.GenericDao;
-import com.seed.test.LiftOff;
 import com.seed.web.model.Role;
-import com.seed.web.model.RoleExample;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,9 +14,6 @@ import java.util.List;
  **/
 @Repository
 public interface RoleMapper extends GenericDao<Role, Long> {
-    int countByExample(RoleExample example);
-
-    int deleteByExample(RoleExample example);
 
     int deleteByPrimaryKey(Long id);
 
@@ -27,17 +21,8 @@ public interface RoleMapper extends GenericDao<Role, Long> {
 
     int insertSelective(Role record);
 
-    List<Role> selectByExample(RoleExample example);
-
     Role selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") Role record, @Param("example") RoleExample example);
-
-    int updateByExample(@Param("record") Role record, @Param("example") RoleExample example);
-
     int updateByPrimaryKeySelective(Role record);
-
-    int updateByPrimaryKey(Role record);
 
     /**
      * 通过用户id 查询用户 拥有的角色

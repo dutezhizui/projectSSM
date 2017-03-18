@@ -27,5 +27,4 @@ public interface UserService extends GenericService<User, Long> {
      * @param username
      * @return
      */
-    User selectByUsername(String username);
 }
