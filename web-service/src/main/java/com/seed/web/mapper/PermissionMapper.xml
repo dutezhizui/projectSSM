@@ -93,4 +93,9 @@
         WHERE rp.role_id =
         #{id,jdbcType=BIGINT}
     </select>
+
+    <select id="selectByPage" parameterType="com.seed.web.model.Permission" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from permission
+    </select>
 </mapper>

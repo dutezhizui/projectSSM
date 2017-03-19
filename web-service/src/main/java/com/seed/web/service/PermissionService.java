@@ -21,4 +21,8 @@ public interface PermissionService extends GenericService<Permission, Long> {
      */
     List<Permission> selectPermissionsByRoleId(Long roleId);
 
+    /**
+     * 根据对象查询分页信息
+     */
+    List<Permission> selectByPage(Permission permission);
 }

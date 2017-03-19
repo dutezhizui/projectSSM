@@ -35,4 +35,9 @@ public interface PermissionMapper extends GenericDao<Permission, Long> {
      * @return
      */
     List<Permission> selectPermissionsByRoleId(Long roleId);
+
+    /**
+     *
+     */
+    List<Permission> selectByPage(Permission permission);
 }

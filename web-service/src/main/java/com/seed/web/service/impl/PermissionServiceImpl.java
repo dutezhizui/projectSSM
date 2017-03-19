@@ -32,4 +32,9 @@ public class PermissionServiceImpl extends GenericServiceImpl<Permission, Long> 
     public List<Permission> selectPermissionsByRoleId(Long roleId) {
         return permissionMapper.selectPermissionsByRoleId(roleId);
     }
+
+    @Override
+    public List<Permission> selectByPage(Permission permission) {
+        return permissionMapper.selectByPage(permission);
+    }
 }

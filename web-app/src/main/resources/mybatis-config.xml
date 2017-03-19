@@ -62,8 +62,11 @@
     </typeAliases>
 
     <plugins>
-        <plugin interceptor="com.seed.core.feature.orm.mybatis.PaginationResultSetHandlerInterceptor"/>
-        <plugin interceptor="com.seed.core.feature.orm.mybatis.PaginationStatementHandlerInterceptor"/>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="offsetAsPageNum" value="false"/>
+            <property name="supportMethodsArguments" value="true"/>
+        </plugin>
+        
     </plugins>
 
 </configuration>
