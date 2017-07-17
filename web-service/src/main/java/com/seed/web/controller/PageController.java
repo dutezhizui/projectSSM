@@ -1,17 +1,14 @@
 package com.seed.web.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
-import com.seed.domain.po.Result;
-import com.seed.web.model.Permission;
-import com.seed.web.service.PermissionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alibaba.fastjson.JSON;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,29 +24,92 @@ public class PageController {
     /**
      * 登录页
      */
-    @Autowired
-    private PermissionService permissionService;
-
     @RequestMapping("/login")
     public String login() {
+
+        System.out.println("userName=");
         return "index";
     }
-
-    @RequestMapping("/test")
+    @RequestMapping("/customers")
     @ResponseBody
-    public Result getResult(@RequestParam(value = "test",defaultValue = "1") Long test, HttpServletRequest request){
-        Result result=new Result();
-        List list=permissionService.selectPermissionsByRoleId(1L);
-        Permission permission=new Permission();
-        permission.setPageNum(1);
-        permission.setPageSize(2);
-        List listPage=permissionService.selectByPage(permission);
-        PageInfo pageInfo=new PageInfo(list);
-        result.setStatusCode(0);
-        result.setMessage("select success");
-        result.setData(pageInfo);
+    @CrossOrigin
+    public Object getCustomer(@RequestParam("page") int page,@RequestParam("size") int size){
+        List list=new ArrayList();
+        for (int i=0;i<15;i++){
+            CustomerEntity customerEntity=new CustomerEntity(i,"yky","yy","yky","yy","15989510269","yy"
+                    ,"Shenzhen","Guangdong","0001","China");
+            list.add(customerEntity);
+        }
+        PageData pageData=new PageData();
+        if (page==0){
+            List listSub=new ArrayList();
+            for (int i=0;i<size;i++)
+                listSub.add(list.get(i));
+            pageData.setItems(listSub);
+            pageData.setLast(false);
+            pageData.setCurrentPageNumber(1);
+        }else {
+            List listSub=new ArrayList();
+            for (int i=page*size;i<size;i++)
+                listSub.add(list.get(i));
+            pageData.setItems(listSub);
+            pageData.setLast(true);
+            pageData.setCurrentPageNumber(page);
+        }
 
-        return result;
+
+        return pageData;
+    }
+
+    @RequestMapping("/delCustomers")
+    @ResponseBody
+    @CrossOrigin
+    public Object delCustomer(HttpServletRequest request){
+
+        List list=new ArrayList();
+        for (int i=0;i<15;i++){
+            CustomerEntity customerEntity=new CustomerEntity(i,"yky","yy","yky","yy","15989510269","yy"
+                    ,"Shenzhen","Guangdong","0001","China");
+            list.add(customerEntity);
+        }
+        PageData pageData=new PageData();
+        pageData.setCurrentPageNumber(1);
+        pageData.setLast(false);
+        pageData.setItems(list);
+
+
+        return pageData;
+    }
+    /**
+     * dashboard页
+     */
+    @RequestMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
+    /**
+     * 404页
+     */
+    @RequestMapping("/404")
+    public String error404() {
+        return "404";
+    }
+
+    /**
+     * 401页
+     */
+    @RequestMapping("/401")
+    public String error401() {
+        return "401";
+    }
+
+    /**
+     * 500页
+     */
+    @RequestMapping("/500")
+    public String error500() {
+        return "500";
     }
 
 }

@@ -6,23 +6,20 @@
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <!--登录页面不过滤 -->
-    <http pattern="/login.html" security="none" />
+    <http pattern="/login.jsp" security="none" />
     <http pattern="/favicon.ico" security="none"/>
-    <http pattern="/js/**" security="none"/>
-    <http pattern="/css/**" security="none"/>
-    <http pattern="/error/**" security="none"/>
-
+    <http pattern="/page/**" security="none"/>
     <http >
-        <form-login login-page="/login.html" login-processing-url="/page/login"
+        <form-login login-page="/login.jsp" login-processing-url="/page/login"
                     username-parameter="j_username" password-parameter="j_password"
                     authentication-success-handler-ref="authSuccess"
                     authentication-failure-handler-ref="authFail"
         />
         <!--访问/admin.jsp资源的用户必须具有ROLE_ADMIN的权限 -->
-        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/page/**" access="hasRole('ROLE_USER')" />
+        <!--<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />-->
+        <!--<intercept-url pattern="/page/**" access="hasRole('ROLE_USER')" />-->
         <!--访问/**资源的用户必须具有ROLE_USER的权限 -->
-        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+        <!--<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />-->
         <session-management>
             <concurrency-control max-sessions="1"
                                  error-if-maximum-exceeded="false" />
